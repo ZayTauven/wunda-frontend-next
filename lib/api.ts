@@ -46,6 +46,8 @@ export const getProfile     = ()                => api.get("/auth/profile/").the
 export const getUsers       = (params?: object) => api.get("/auth/users/", { params }).then((r) => r.data);
 export const validateUser   = (id: number)      => api.post(`/auth/users/${id}/validate/`).then((r) => r.data);
 export const blockUser      = (id: number)      => api.post(`/auth/users/${id}/block/`).then((r) => r.data);
+export const verifyKyc      = (id: number)      => api.post(`/auth/users/${id}/verify_kyc/`).then((r) => r.data);
+export const rejectKyc      = (id: number, reason: string) => api.post(`/auth/users/${id}/reject_kyc/`, { reason }).then((r) => r.data);
 export const getAnalytics   = ()                => api.get("/auth/analytics/").then((r) => r.data);
 export const getDirectory   = (params?: object) => api.get("/auth/directory/users/", { params }).then((r) => r.data);
 

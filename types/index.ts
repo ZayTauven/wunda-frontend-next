@@ -1,5 +1,16 @@
-export type UserRole = "admin" | "controller" | "chef_locality" | "agent" | "member";
+export type UserRole = "admin" | "controller" | "chef_locality" | "agent" | "porteur" | "member";
 export type UserStatus = "pending" | "active" | "inactive" | "blocked";
+
+export type KycStatus = "none" | "pending" | "verified" | "rejected";
+
+export interface IdentityDocument {
+  id: number;
+  user: number;
+  doc_type: "id_front" | "id_back" | "selfie";
+  doc_type_display: string;
+  file: string;
+  uploaded_at: string;
+}
 
 export interface User {
   id: number;
@@ -14,6 +25,11 @@ export interface User {
   is_diaspora: boolean;
   avatar_url?: string | null;
   last_active_at?: string | null;
+  kyc_status?: KycStatus;
+  kyc_rejection_reason?: string | null;
+  kyc_reviewed_by_name?: string | null;
+  kyc_reviewed_at?: string | null;
+  identity_documents?: IdentityDocument[];
 }
 
 export interface LocalityBrief {
